@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { supabase } from './supabaseClient';
 import Auth from './Auth';
-import MentalHealthScreening from './MentalHealthScreening';
-import CounselorDashboard from './CounselorDashboard';
-import { LogOut, User as UserIcon, Bell, Heart } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { LogOut, User as UserIcon, Heart } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const MentalHealthScreening = lazy(() => import('./MentalHealthScreening'));
+const CounselorDashboard = lazy(() => import('./CounselorDashboard'));
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -111,11 +112,21 @@ export default function App() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.4 }}
           >
-            {userRole === 'counselor' ? (
-              <CounselorDashboard />
-            ) : (
-              <MentalHealthScreening studentId={session?.user?.id || null} />
-            )}
+            <Suspense fallback={
+              <div className="flex items-center justify-center py-24">
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                  transition={{ repeat: Infinity, duration: 2 }}
+                  className="w-12 h-12 bg-blue-600 rounded-2xl shadow-xl shadow-blue-200"
+                />
+              </div>
+            }>
+              {userRole === 'counselor' ? (
+                <CounselorDashboard />
+              ) : (
+                <MentalHealthScreening studentId={session?.user?.id || null} />
+              )}
+            </Suspense>
           </motion.div>
         </div>
       </main>
