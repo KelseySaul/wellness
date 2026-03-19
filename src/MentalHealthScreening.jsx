@@ -3,7 +3,8 @@ import { supabase } from './supabaseClient';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Send, CheckCircle2, AlertTriangle, ShieldCheck,
-  Sparkles, Smile, CloudMoon, Brain, Zap, Apple, Wind, AlertCircle, X
+  Sparkles, Smile, CloudMoon, Brain, Zap, Apple, Wind, AlertCircle, X, RefreshCw
+
 } from 'lucide-react';
 
 const WELLNESS_TIPS = [

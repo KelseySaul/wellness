@@ -1,5 +1,12 @@
 import { useEffect, useState, useCallback } from 'react';
-console.log('CounselorDashboard loaded - v4');
+import { supabase } from './supabaseClient';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Users, AlertCircle, CheckCircle2, RefreshCw,
+  Search, Calendar, Activity, ShieldAlert, Bell, X, Save, MessageSquare, Clock
+} from 'lucide-react';
+
+console.log('CounselorDashboard loaded - v5');
 
 
 function AssessmentRow({ item, idx, onSave }) {
@@ -100,12 +107,7 @@ function AssessmentRow({ item, idx, onSave }) {
 }
 
 
-import { supabase } from './supabaseClient';
-import { motion, AnimatePresence } from 'framer-motion';
-import {
-  Users, AlertCircle, CheckCircle2, RefreshCw,
-  Search, Calendar, Activity, ShieldAlert, Bell, X, Save, MessageSquare, Clock
-} from 'lucide-react';
+
 
 // ─── SVG Donut Chart ────────────────────────────────────────────────────────
 function DonutChart({ high, moderate, low, total }) {
