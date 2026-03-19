@@ -144,33 +144,33 @@ export default function MentalHealthScreening({ studentId }) {
 
   return (
     <div className="max-w-3xl mx-auto">
-      <div className="card shadow-2xl shadow-slate-200/50 border-white/50 bg-white/70 backdrop-blur-xl">
+      <div className="card shadow-2xl shadow-slate-200/50 border-white/50 bg-white/70 backdrop-blur-xl shrink-0 overflow-hidden">
 
         {/* Hero Banner */}
-        <div className="bg-gradient-to-br from-blue-600 to-indigo-700 p-10 text-white relative overflow-hidden">
+        <div className="bg-gradient-to-br from-blue-600 to-indigo-700 p-6 sm:p-10 text-white relative overflow-hidden">
           <div className="absolute top-0 right-0 p-8 opacity-10">
-            <ShieldCheck className="w-48 h-48" />
+            <ShieldCheck className="w-32 h-32 sm:w-48 sm:h-48" />
           </div>
-          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
-            <div>
-              <h1 className="text-4xl font-extrabold tracking-tight mb-2">Wellness Check-in</h1>
-              <p className="text-blue-100 text-lg opacity-90 max-w-md font-medium">
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4 sm:gap-6">
+            <div className="text-left">
+              <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight mb-2">Wellness Check-in</h1>
+              <p className="text-blue-100 text-sm sm:text-lg opacity-90 max-w-md font-medium">
                 Take a moment to reflect on your week. Your feedback remains secure and confidential.
               </p>
             </div>
-            <div className="bg-white/20 backdrop-blur-md rounded-2xl p-4 flex items-center gap-3">
-              <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center text-blue-600">
-                <ShieldCheck className="w-6 h-6" />
+            <div className="bg-white/20 backdrop-blur-md rounded-2xl p-3 sm:p-4 flex items-center gap-3 w-fit">
+              <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white rounded-lg flex items-center justify-center text-blue-600 shrink-0">
+                <ShieldCheck className="w-5 h-5 sm:w-6 sm:h-6" />
               </div>
               <div className="text-left font-sans">
-                <div className="text-[10px] font-bold uppercase tracking-widest opacity-80">Encryption</div>
-                <div className="text-xs font-bold leading-none">Confidential Protocol</div>
+                <div className="text-[8px] sm:text-[10px] font-bold uppercase tracking-widest opacity-80">Encryption</div>
+                <div className="text-[10px] sm:text-xs font-bold leading-none">Confidential Protocol</div>
               </div>
             </div>
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="p-10 space-y-12">
+        <form onSubmit={handleSubmit} className="p-6 sm:p-10 space-y-8 sm:space-y-12">
 
           {/* Inline error */}
           {error && (
@@ -180,7 +180,7 @@ export default function MentalHealthScreening({ studentId }) {
               className="flex items-start gap-3 bg-red-50 border border-red-200 text-red-700 rounded-xl px-4 py-3"
             >
               <AlertCircle className="w-5 h-5 mt-0.5 shrink-0" />
-              <p className="text-sm font-medium flex-grow">{error}</p>
+              <p className="text-xs sm:text-sm font-medium flex-grow text-left">{error}</p>
               <button type="button" onClick={() => setError(null)} className="text-red-400 hover:text-red-600 transition-colors">
                 <X className="w-4 h-4" />
               </button>
@@ -189,107 +189,96 @@ export default function MentalHealthScreening({ studentId }) {
 
           {/* Profile Information */}
           <section>
-            <div className="flex items-center gap-2 mb-6">
+            <div className="flex items-center gap-2 mb-4 sm:mb-6">
               <div className="w-1 h-6 bg-blue-600 rounded-full"></div>
-              <h3 className="text-sm font-bold text-slate-400 uppercase tracking-[0.2em]">Profile Information</h3>
+              <h3 className="text-[10px] sm:text-sm font-bold text-slate-400 uppercase tracking-[0.2em]">Profile Information</h3>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-4 sm:gap-6 text-left">
               <div className="md:col-span-3 space-y-2">
-                <label className="text-xs font-bold text-slate-500 ml-1">Full Name</label>
+                <label className="text-[10px] sm:text-xs font-bold text-slate-500 ml-1 uppercase">Full Name</label>
                 <input
                   required type="text" placeholder="Alex Johnson"
-                  className="input-field"
+                  className="input-field py-2.5 sm:py-3 text-sm sm:text-base"
                   value={form.student_name}
                   onChange={(e) => setQ('student_name', e.target.value)}
                 />
               </div>
               <div className="md:col-span-1 space-y-2">
-                <label className="text-xs font-bold text-slate-500 ml-1">Age</label>
+                <label className="text-[10px] sm:text-xs font-bold text-slate-500 ml-1 uppercase">Age</label>
                 <input
                   required type="number" placeholder="16" min="12" max="19"
-                  className="input-field text-center"
+                  className="input-field py-2.5 sm:py-3 text-sm sm:text-base text-center"
                   value={form.student_age}
                   onChange={(e) => setQ('student_age', e.target.value)}
                 />
               </div>
               <div className="md:col-span-2 space-y-2">
-                <label className="text-xs font-bold text-slate-500 ml-1">Gender Identity</label>
+                <label className="text-[10px] sm:text-xs font-bold text-slate-500 ml-1 uppercase text-left block">Sex</label>
                 <select
-                  required className="input-field appearance-none"
+                  required className="input-field py-2.5 sm:py-3 text-sm sm:text-base appearance-none bg-white"
                   value={form.student_sex}
                   onChange={(e) => setQ('student_sex', e.target.value)}
                 >
-                  <option value="">Select Option</option>
+                  <option value="">Select...</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
-                  <option value="Non-binary">Non-binary</option>
-                  <option value="Prefer not to say">Prefer not to say</option>
+                  <option value="Other">Other</option>
                 </select>
               </div>
             </div>
           </section>
 
-          {/* Wellbeing Questions */}
-          <section className="space-y-10">
-            <div className="flex items-center gap-2 mb-2">
+          {/* Screening Questions */}
+          <section>
+            <div className="flex items-center gap-2 mb-6 sm:mb-8">
               <div className="w-1 h-6 bg-blue-600 rounded-full"></div>
-              <h3 className="text-sm font-bold text-slate-400 uppercase tracking-[0.2em]">Internal Wellbeing</h3>
-              <span className="ml-auto text-xs font-bold text-slate-400 bg-slate-100 px-2.5 py-1 rounded-full">
-                {QUESTIONS.length} questions
-              </span>
+              <h3 className="text-[10px] sm:text-sm font-bold text-slate-400 uppercase tracking-[0.2em]">Daily Experience</h3>
             </div>
+            <div className="space-y-10 sm:space-y-16">
+              {QUESTIONS.map((q) => (
+                <div key={q.id} className="space-y-4 sm:space-y-6">
+                  <p className="text-sm sm:text-lg font-bold text-slate-800 leading-snug text-left">
+                    <span className="text-blue-600 mr-2 opacity-50 font-black italic">0{q.id.split('_')[0].slice(1)}</span>
+                    {q.label}
 
-            {QUESTIONS.map((q, qIdx) => (
-              <motion.div
-                key={q.id}
-                initial={{ opacity: 0, x: -10 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: qIdx * 0.05 }}
-                className="space-y-4"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-slate-50 text-slate-400 rounded-lg shrink-0">{q.icon}</div>
-                  <label className="block text-lg font-bold text-slate-800 tracking-tight leading-snug">{q.label}</label>
-                </div>
-
-                {/* Emoji pill buttons */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                  {OPTION_LABELS.map((opt) => {
-                    const selected = form[q.id] === opt.value;
-                    return (
+                  </p>
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+                    {OPTION_LABELS.map((opt) => (
                       <button
                         key={opt.value}
                         type="button"
                         onClick={() => setQ(q.id, opt.value)}
-                        className={`flex flex-col items-center gap-1.5 py-3 px-2 rounded-xl border-2 font-bold text-xs transition-all duration-200 ${
-                          selected
-                            ? 'border-blue-500 bg-blue-50 text-blue-700 shadow-md shadow-blue-100 scale-105'
-                            : 'border-slate-200 bg-white text-slate-500 hover:border-slate-300 hover:bg-slate-50'
+                        className={`group relative p-3 sm:p-4 rounded-2xl border-2 transition-all flex flex-col items-center gap-2 ${
+                          form[q.id] === opt.value
+                            ? 'bg-blue-600 border-blue-600 text-white shadow-xl shadow-blue-200 scale-[1.02]'
+                            : 'bg-white border-slate-100 text-slate-600 hover:border-blue-200 hover:bg-blue-50/50'
                         }`}
                       >
-                        <span className="text-2xl">{opt.emoji}</span>
-                        <span className="uppercase tracking-wider text-center leading-tight">{opt.label}</span>
+                        <span className="text-xl sm:text-2xl">{opt.emoji}</span>
+                        <span className={`text-[9px] sm:text-[10px] font-black uppercase tracking-widest ${form[q.id] === opt.value ? 'text-blue-100' : 'text-slate-400 group-hover:text-blue-600'}`}>
+                          {opt.label}
+                        </span>
                       </button>
-                    );
-                  })}
+                    ))}
+                  </div>
                 </div>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </section>
 
           <button
             type="submit" disabled={loading}
-            className="btn-primary w-full py-5 text-lg flex items-center justify-center gap-3"
+            className="w-full py-4 sm:py-5 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl text-sm sm:text-lg font-black uppercase tracking-widest flex items-center justify-center gap-3 shadow-xl shadow-blue-100 transition-all active:scale-95 disabled:opacity-50"
           >
             {loading ? (
               <>
-                <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                <span>Processing secure submission...</span>
+                <RefreshCw className="w-5 h-5 sm:w-6 sm:h-6 animate-spin" />
+                <span>Processing...</span>
               </>
             ) : (
               <>
-                <Send className="w-6 h-6" />
-                <span>Submit My Wellness Check-in</span>
+                <Send className="w-5 h-5 sm:w-6 sm:h-6" />
+                <span>Submit Check-in</span>
               </>
             )}
           </button>

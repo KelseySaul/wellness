@@ -5,7 +5,8 @@ import { LogOut, User as UserIcon, Heart } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const MentalHealthScreening = lazy(() => import('./MentalHealthScreening'));
-const CounselorDashboard = lazy(() => import('./CounselorDashboard'));
+const CounselorDashboard = lazy(() => import('./CounselorMain'));
+
 
 export default function App() {
   const [session, setSession] = useState(null);
@@ -59,43 +60,43 @@ export default function App() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
       {/* Premium Header */}
-      <header className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-30">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center text-slate-900 font-sans">
+      <header className="bg-white/80 backdrop-blur-md border-b border-slate-200 sticky top-0 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200">
-              <Heart className="w-6 h-6 fill-white" />
+            <div className="w-8 h-8 sm:w-10 sm:h-10 bg-blue-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-blue-200 shrink-0">
+              <Heart className="w-5 h-5 sm:w-6 sm:h-6 fill-white" />
             </div>
-            <div>
-              <span className="text-xl font-bold tracking-tight text-slate-900 block leading-none">WellnessPort</span>
-              <span className="text-[10px] font-bold text-blue-600 uppercase tracking-widest">Mental Health System</span>
+            <div className="text-left font-sans">
+              <span className="text-lg sm:text-xl font-bold tracking-tight text-slate-900 block leading-none">WellnessPort</span>
+              <span className="hidden sm:block text-[10px] font-bold text-blue-600 uppercase tracking-widest mt-1">Mental Health System</span>
             </div>
           </div>
           
-          <div className="flex items-center gap-4 lg:gap-8">
+          <div className="flex items-center gap-4">
             {session ? (
               <>
-                <div className="hidden md:flex items-center gap-3 border-r border-slate-200 pr-6 mr-2">
+                <div className="flex items-center gap-2 sm:gap-3 sm:border-r sm:border-slate-200 sm:pr-6 sm:mr-2">
                   <div className="text-right">
-                    <p className="text-sm font-bold text-slate-800 leading-none">{session.user.email.split('@')[0]}</p>
-                    <p className="text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">{userRole || 'Student'}</p>
+                    <p className="text-xs sm:text-sm font-bold text-slate-800 leading-none">{session.user.email.split('@')[0]}</p>
+                    <p className="text-[9px] sm:text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-1">{userRole || 'Student'}</p>
                   </div>
-                  <div className="w-10 h-10 bg-slate-100 rounded-full flex items-center justify-center border border-slate-200">
-                    <UserIcon className="w-5 h-5 text-slate-500" />
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 bg-slate-100 rounded-full flex items-center justify-center border border-slate-200 shrink-0">
+                    <UserIcon className="w-4 h-4 sm:w-5 sm:h-5 text-slate-500" />
                   </div>
                 </div>
                 
                 <button 
                   onClick={() => supabase.auth.signOut()}
-                  className="flex items-center gap-2 text-slate-600 hover:text-red-600 font-semibold text-sm transition-colors group"
+                  className="flex items-center gap-2 text-slate-600 hover:text-red-600 font-semibold text-xs sm:text-sm transition-colors group"
                 >
-                  <span className="hidden sm:inline">Sign Out</span>
+                  <span className="hidden xs:inline">Sign Out</span>
                   <LogOut className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </button>
               </>
             ) : (
               <button 
                 onClick={() => setShowAuth(true)}
-                className="bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-slate-600 px-6 py-2 rounded-xl text-sm font-bold transition-all border border-slate-200 shadow-sm shadow-slate-100"
+                className="bg-slate-100 hover:bg-blue-50 hover:text-blue-600 text-slate-600 px-4 sm:px-6 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all border border-slate-200 shadow-sm"
               >
                 Counselor Access
               </button>
